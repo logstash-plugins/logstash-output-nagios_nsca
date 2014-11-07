@@ -12,6 +12,7 @@ require "open3"
 # instead.
 #
 # Here is a sample config using the nagios_nsca output:
+# [source,ruby]
 #     output {
 #       nagios_nsca {
 #         # specify the hostname or ip of your nagios server
@@ -44,17 +45,17 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
   config :send_nsca_config, :validate => :path
 
   # The nagios 'host' you want to submit a passive check result to. This
-  # parameter accepts interpolation, e.g. you can use @source_host or other
+  # parameter accepts interpolation, e.g. you can use `@source_host` or other
   # logstash internal variables.
   config :nagios_host, :validate => :string, :default => "%{host}"
 
   # The nagios 'service' you want to submit a passive check result to. This
-  # parameter accepts interpolation, e.g. you can use @source_host or other
+  # parameter accepts interpolation, e.g. you can use `@source_host` or other
   # logstash internal variables.
   config :nagios_service, :validate => :string, :default => "LOGSTASH"
 
   # The format to use when writing events to nagios. This value
-  # supports any string and can include %{name} and other dynamic
+  # supports any string and can include `%{name}` and other dynamic
   # strings.
   config :message_format, :validate => :string, :default => "%{@timestamp} %{host}: %{message}"
 
