@@ -37,7 +37,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
   config :port, :validate => :number, :default => 5667
 
   # The path to the 'send_nsca' binary on the local host.
-  config :send_nsca_bin, :validate => :path, :default => "/usr/sbin/send_nsca"
+  config :send_nsca_bin, :validate => :string, :default => "/usr/sbin/send_nsca"
 
   # The path to the send_nsca config file on the local host.
   # Leave blank if you don't want to provide a config file.
@@ -75,7 +75,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     end
 
     # skip if 'send_nsca' binary doesn't exist
-    if !File.exists?(@send_nsca_bin)
+    if !command_file_exist?
       @logger.warn("Skipping nagios_nsca output; send_nsca_bin file is missing",
                    "send_nsca_bin" => @send_nsca_bin, "missed_event" => event)
       return
@@ -114,10 +114,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     @logger.debug("Running send_nsca command", :nagios_nsca_command => cmd.join(" "), :message => message)
 
     begin
-      Open3.popen3(*cmd) do |i, o, e|
-        i.puts(message)
-        i.close
-      end
+      send_to_nagios(cmd)
     rescue => e
       @logger.warn(
         "Skipping nagios_nsca output; error calling send_nsca",
@@ -129,4 +126,16 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
       @logger.debug("Backtrace", :backtrace => e.backtrace)
     end
   end # def receive
+
+  def command_file_exist?
+    File.exists?(@send_nsca_bin)
+  end
+
+  def send_to_nagios(cmd)
+    Open3.popen3(*cmd) do |i, o, e|
+      i.puts(message)
+      i.close
+    end
+  end
+
 end # class LogStash::Outputs::NagiosNsca
