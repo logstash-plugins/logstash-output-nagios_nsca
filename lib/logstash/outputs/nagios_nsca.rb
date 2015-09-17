@@ -69,10 +69,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     return unless output?(event)
 
     # catch logstash shutdown
-    if event == LogStash::SHUTDOWN
-      finished
-      return
-    end
+    return if event == LogStash::SHUTDOWN
 
     # skip if 'send_nsca' binary doesn't exist
     if !command_file_exist?
