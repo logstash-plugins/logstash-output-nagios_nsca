@@ -111,7 +111,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     @logger.debug("Running send_nsca command", :nagios_nsca_command => cmd.join(" "), :message => message)
 
     begin
-      send_to_nagios(cmd)
+      send_to_nagios(cmd, message)
     rescue => e
       @logger.warn(
         "Skipping nagios_nsca output; error calling send_nsca",
@@ -128,7 +128,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     File.exists?(@send_nsca_bin)
   end
 
-  def send_to_nagios(cmd)
+  def send_to_nagios(cmd, message)
     Open3.popen3(*cmd) do |i, o, e|
       i.puts(message)
       i.close
