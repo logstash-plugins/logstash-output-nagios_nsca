@@ -22,7 +22,7 @@ describe LogStash::Outputs::NagiosNsca do
     end
 
     it "send the event to nagios" do
-      expect(subject).to receive(:send_to_nagios)
+      expect(subject).to receive(:send_to_nagios).with(subject.cmd, instance_of(String))
       subject.receive(event)
     end
   end

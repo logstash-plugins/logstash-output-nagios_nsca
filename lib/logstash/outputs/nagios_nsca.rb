@@ -66,8 +66,6 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
   public
   def receive(event)
     # exit if type or tags don't match
-    
-
     # catch logstash shutdown
     return if event == LogStash::SHUTDOWN
 
@@ -104,8 +102,6 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     # syntax: echo '<server>!<nagios_service>!<status>!<text>'  | \
     #           /usr/sbin/send_nsca -H <nagios_host> -d '!' -c <nsca_config>"
 
-    cmd = [@send_nsca_bin, "-H", @host, "-p", @port, "-d", ":"]
-    cmd = cmd + ["-c", @send_nsca_config]  if @send_nsca_config
     message = "#{nagios_host}:#{nagios_service}:#{status}:#{msg}"
 
     @logger.debug("Running send_nsca command", :nagios_nsca_command => cmd.join(" "), :message => message)
@@ -126,6 +122,13 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
 
   def command_file_exist?
     File.exists?(@send_nsca_bin)
+  end
+
+  def cmd
+    return @cmd if @cmd
+    @cmd = [@send_nsca_bin, "-H", @host, "-p", @port, "-d", ":"]
+    @cmd = @cmd + ["-c", @send_nsca_config]  if @send_nsca_config
+    @cmd
   end
 
   def send_to_nagios(cmd, message)
