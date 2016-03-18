@@ -1,3 +1,5 @@
+# 2.0.4
+  - New dependency requirements for logstash-core for the 5.0 release
 ## 2.0.3
  - Fix plugin command to nagios and command format, fixes #3
  - Fix the nagios command format, fixes #3
