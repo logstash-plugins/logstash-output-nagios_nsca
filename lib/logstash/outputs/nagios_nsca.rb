@@ -17,7 +17,6 @@ require "open3"
 #       nagios_nsca {
 #         # specify the hostname or ip of your nagios server
 #         host => "nagios.example.com"
-#
 #         # specify the port to connect to
 #         port => 5667
 #       }
