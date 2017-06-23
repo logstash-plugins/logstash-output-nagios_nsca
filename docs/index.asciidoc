@@ -7,7 +7,7 @@ START - GENERATED VARIABLES, DO NOT EDIT!
 :version: %VERSION%
 :release_date: %RELEASE_DATE%
 :changelog_url: %CHANGELOG_URL%
-:include_path: ../../../logstash/docs/include
+:include_path: ../../../../logstash/docs/include
 ///////////////////////////////////////////
 END - GENERATED VARIABLES, DO NOT EDIT!
 ///////////////////////////////////////////
@@ -43,7 +43,7 @@ Here is a sample config using the nagios_nsca output:
 [id="plugins-{type}s-{plugin}-options"]
 ==== Nagios_nsca Output Configuration Options
 
-This plugin supports the following configuration options plus the <<plugins-{type}s-common-options>> described later.
+This plugin supports the following configuration options plus the <<plugins-{type}s-{plugin}-common-options>> described later.
 
 [cols="<,<,<",options="header",]
 |=======================================================================
@@ -58,7 +58,7 @@ This plugin supports the following configuration options plus the <<plugins-{typ
 | <<plugins-{type}s-{plugin}-send_nsca_config>> |a valid filesystem path|No
 |=======================================================================
 
-Also see <<plugins-{type}s-common-options>> for a list of options supported by all
+Also see <<plugins-{type}s-{plugin}-common-options>> for a list of options supported by all
 output plugins.
 
 &nbsp;
@@ -137,4 +137,5 @@ Leave blank if you don't want to provide a config file.
 
 
 
+[id="plugins-{type}s-{plugin}-common-options"]
 include::{include_path}/{type}.asciidoc[]
