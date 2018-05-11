@@ -33,7 +33,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
   config :host, :validate => :string, :default => "localhost"
 
   # The port where the NSCA daemon on the nagios host listens.
-  config :port, :validate => :number, :default => 5667
+  config :port, :validate => :string, :default => "5667"
 
   # The path to the 'send_nsca' binary on the local host.
   config :send_nsca_bin, :validate => :string, :default => "/usr/sbin/send_nsca"
