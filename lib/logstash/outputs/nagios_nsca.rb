@@ -93,7 +93,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
     else
       status = status.to_i
       if status > 3 || status < 0
-         msg "status must be > 0 and <= 3, not #{status}"
+         msg = "status must be > 0 and <= 3, not #{status}"
          status = 2
       end
     end
@@ -126,7 +126,7 @@ class LogStash::Outputs::NagiosNsca < LogStash::Outputs::Base
 
   def cmd
     return @cmd if @cmd
-    @cmd = [@send_nsca_bin, "-H", @host, "-p", @port, "-d", ":"]
+    @cmd = [@send_nsca_bin, "-H", @host, "-p", @port.to_s, "-d", ":"]
     @cmd = @cmd + ["-c", @send_nsca_config]  if @send_nsca_config
     @cmd
   end
