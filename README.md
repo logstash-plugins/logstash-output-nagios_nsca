@@ -1,6 +1,6 @@
 # Logstash Plugin
 
-[![Travis Build Status](https://travis-ci.org/logstash-plugins/logstash-output-nagios_nsca.svg)](https://travis-ci.org/logstash-plugins/logstash-output-nagios_nsca)
+[![Travis Build Status](https://travis-ci.com/logstash-plugins/logstash-output-nagios_nsca.svg)](https://travis-ci.com/logstash-plugins/logstash-output-nagios_nsca)
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash).
 
