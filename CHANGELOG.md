@@ -1,3 +1,6 @@
+## x.y.z
+- [DOC] Fixed spacing to avoid glitch in code visualisation [#16](https://github.com/logstash-plugins/logstash-output-nagios_nsca/pull/16)
+
 ## 3.0.7
 - Fix: cast port to string in command execution [#14](https://github.com/logstash-plugins/logstash-output-nagios_nsca/pull/14)
 
