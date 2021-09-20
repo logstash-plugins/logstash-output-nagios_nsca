@@ -1,3 +1,6 @@
+## 3.0.7
+- Fix: cast port to string in command execution [#14](https://github.com/logstash-plugins/logstash-output-nagios_nsca/pull/14)
+
 ## 3.0.6
   - Docs: Set the default_codec doc attribute.
 
